@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Josie's Milk Tea House</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff7fc;
+        }
+
+        header {
+            background: #ffb6d9;
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+
+        nav {
+            background: #ff8fc7;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .section {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .item button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #ff8fc7;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff8fc7;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+        }
+
+        #cart-box {
+            display: none;
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            background: white;
+            padding: 20px;
+            width: 260px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #checkout-btn {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            background: #ff4b98;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Josie's Milk Tea House</header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="home" class="section">
+        <h2>Welcome to Josie's Milk Tea House</h2>
+        <p>Fresh, creamy, and brewed with love.</p>
+    </section>
+
+    <section id="menu" class="section">
+        <h2>Menu</h2>
+        <div class="menu-grid">
+
+            <!-- Classic -->
+            <div class="item">
+                <img src="c:\Users\Admin\Downloads\5ae567ea-4a7e-46e4-b250-dc0f74c49d72.jpg" alt="Classic Milk Tea">
+                <h3>Classic Milk Tea</h3>
+                <p>₱89</p>
+                <button onclick="addToCart('Classic Milk Tea')">Add to Cart</button>
+            </div>
+
+            <!-- Brown Sugar -->
+            <div class="item">
+                <img src="c:\Users\Admin\Downloads\b8de3a27-5337-4f37-9efe-04ca727d35f1.jpg" alt="Brown Sugar Milk Tea">
+                <h3>Brown Sugar Milk Tea</h3>
+                <p>₱99</p>
+                <button onclick="addToCart('Brown Sugar Milk Tea')">Add to Cart</button>
+            </div>
+
+            <!-- Matcha -->
+            <div class="item">
+                <img src="c:\Users\Admin\Downloads\7da77b26-b0b4-42f0-bd0c-1d7a0b1962a8.jpg" alt="Matcha Milk Tea">
+                <h3>Matcha Milk Tea</h3>
+                <p>₱109</p>
+                <button onclick="addToCart('Matcha Milk Tea')">Add to Cart</button>
+            </div>
+
+            <!-- Chocolate Cocoa -->
+            <div class="item">
+                <img src="c:\Users\Admin\Downloads\9f906dc5-d5c1-4a88-9bf0-b50a4f1247ea.jpg"
+                    alt="Chocolate Pearl Cocoa">
+                <h3>Chocolate Pearl Cocoa</h3>
+                <p>₱119</p>
+                <button onclick="addToCart('Chocolate Pearl Cocoa')">Add to Cart</button>
+            </div>
+
+            <!-- NEW: Taro Milk Tea -->
+            <div class="item">
+                <img src="c:\Users\Admin\Downloads\f7a1ef6a-2985-460a-9772-b970b3f94ffd.jpg" alt="Taro Milk Tea">
+                <h3>Taro Milk Tea</h3>
+                <p>₱99</p>
+                <button onclick="addToCart('Taro Milk Tea')">Add to Cart</button>
+            </div>
+
+            <!-- NEW: Okinawa Pearl Milk Tea -->
+            <div class="item">
+                <img src="c:\Users\Admin\Downloads\11e791a7-902f-4a27-8965-7ee22e14cb31.jpg"
+                    alt="Okinawa Pearl Milk Tea">
+                <h3>Okinawa Pearl Milk Tea</h3>
+                <p>₱109</p>
+                <button onclick="addToCart('Okinawa Pearl Milk Tea')">Add to Cart</button>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>📍 Address: Poblacion Bacuag, Surigao City</p>
+        <p>📞 Phone: 09362673486</p>
+        <p>📧 Email: josiemacula21@gmail.com</p>
+    </section>
+
+    <div class="cart" onclick="toggleCart()">🛒 Cart</div>
+
+    <div id="cart-box">
+        <h3>Your Cart</h3>
+        <ul id="cart-list"></ul>
+        <button id="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(item) {
+            cart.push(item);
+            alert(item + " added to cart!");
+            updateCart();
+        }
+
+        function toggleCart() {
+            const box = document.getElementById("cart-box");
+            box.style.display = box.style.display === "none" || box.style.display === "" ? "block" : "none";
+        }
+
+        function updateCart() {
+            const list = document.getElementById("cart-list");
+            list.innerHTML = "";
+            cart.forEach(i => {
+                let li = document.createElement("li");
+                li.textContent = i;
+                list.appendChild(li);
+            });
+        }
+
+        function checkout() {
+            alert("Checkout complete! Thank you for ordering.");
+            cart = [];
+            updateCart();
+        }
+    </script>
+
+</body>
+
+</html>
